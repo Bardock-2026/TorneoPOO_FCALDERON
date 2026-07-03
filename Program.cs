@@ -3,18 +3,18 @@ using TorneoPOO_FCALDERON.Models;
 
 Jugador objJugador1 = new Jugador();
 
-objJugador1.Nombre = "Piero Hincapié";
-objJugador1.Numero = 4;
+objJugador1.Nombre = "William Pacho";
+objJugador1.Numero = 5;
 objJugador1.Posicion = "Defensa";
-objJugador1.Edad = 25;
+objJugador1.Edad = 21;
 
 
 Jugador objJugador2 = new Jugador();
 
-objJugador2.Nombre = "Enner Valencia";
-objJugador2.Numero = 7;
+objJugador2.Nombre = "Kendri Paez";
+objJugador2.Numero = 10;
 objJugador2.Posicion = "Delantero";
-objJugador2.Edad = 32;
+objJugador2.Edad = 16;
 
 
 Equipo objEquipo1 = new Equipo();
@@ -32,18 +32,18 @@ objEquipo1.ListarPlantilla();
 
 Jugador objJugador3 = new Jugador();
 
-objJugador3.Nombre = "Moiséc Caicedo";
-objJugador3.Numero = 5;
+objJugador3.Nombre = "Alam Franco";
+objJugador3.Numero = 8;
 objJugador3.Posicion = "Medio Campo";
-objJugador3.Edad = 23;
+objJugador3.Edad = 20;
 
 
 Jugador objJugador4 = new Jugador();
 
-objJugador4.Nombre = "Neiser Reascos";
-objJugador4.Numero = 24;
+objJugador4.Nombre = "Ivan Hurtado";
+objJugador4.Numero = 7;
 objJugador4.Posicion = "Lateral";
-objJugador4.Edad = 45;
+objJugador4.Edad = 39;
 
 
 Equipo objEquipo2 = new Equipo();
