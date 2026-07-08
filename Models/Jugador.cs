@@ -20,7 +20,16 @@ namespace TorneoPOO_FCALDERON.Models
 
         //Constructor
         public Jugador(String nombre, int edad, int numero, string posicion)
-        { 
+        {
+            if (!EsMayorEdad(edad))
+            {
+                throw new Exception("El jugador debe ser mayor de edad");
+            }
+            if (!EsNumeroValido(numero))
+            {
+                throw new Exception("El número de la camiseta no es válido");
+            }
+
             this.Nombre = nombre;
             this.Edad = edad;
             this.Numero = numero;
