@@ -42,8 +42,11 @@ namespace TorneoPOO_EMANOSALVAS.Models
             Console.WriteLine($"Hay un partido programado entre el local {this.Local.Nombre} y el visitante {this.Visitante.Nombre} en el lugar {this.Lugar}");
         }
 
+        public bool ValidarEquiposDistintos()
+        {
+            return this.Local != this.Visitante;
+        }
 
-       
 
 
 
