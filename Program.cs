@@ -28,6 +28,5 @@ objEquipo2.AgregarJugador(objJugador4);
 
 objEquipo2.ListarPlantilla();
 
-Partido objPartido1 = new Partido();
-objPartido1.Programar(objEquipo1, objEquipo2, DateTime.Now, "Guayaquil");
+Partido objPartido1 = new Partido(objEquipo1, objEquipo2, DateTime.Now, "Guayaquil");
 objPartido1.MostrarResumen();
