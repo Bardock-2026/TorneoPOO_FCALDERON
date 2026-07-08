@@ -1,7 +1,7 @@
 ﻿using TorneoPOO_EMANOSALVAS.Models;
 using TorneoPOO_FCALDERON.Models;
 
-Jugador objJugador1 = new Jugador();
+Jugador objJugador1 = new Jugador("Piero Hincapié", 25, 4, "Defensa");
 
 objJugador1.Nombre = "Piero Hincapié";
 objJugador1.Numero = 4;

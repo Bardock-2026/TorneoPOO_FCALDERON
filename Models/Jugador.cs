@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
 
 namespace TorneoPOO_FCALDERON.Models
@@ -16,6 +17,16 @@ namespace TorneoPOO_FCALDERON.Models
         public string Posicion {  get; set; }
 
         //METODOS, COMPORTAMIENTO O FUNCIONES 
+
+        //Constructor
+        public Jugador(String nombre, int edad, int numero, string posicion)
+        { 
+            this.Nombre = nombre;
+            this.Edad = edad;
+            this.Numero = numero;
+            this.Posicion = posicion;
+        }
+
 
         public void Presenetar ()
         {
