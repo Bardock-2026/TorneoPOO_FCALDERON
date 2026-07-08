@@ -67,7 +67,14 @@ namespace TorneoPOO_FCALDERON.Models
         }
         public bool ValidarNumeroCamiseta()
         {
-            return this.Numero > 0 && this.Numero < 100;
+            if (this.Numero > 0 && this.Numero < 100)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 
