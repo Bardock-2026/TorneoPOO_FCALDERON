@@ -6,11 +6,7 @@ Jugador objJugador1 = new Jugador("Piero Hincapié", 25, 4, "Defensa");
 Jugador objJugador2 = new Jugador("Enner Valencia" ,32, 7, "Delantero");
 
 
-Equipo objEquipo1 = new Equipo();
-
-objEquipo1.Nombre = "Emelec";
-objEquipo1.Ciudad = "Guayaquil";
-objEquipo1.Jugadores = new List<Jugador>();
+Equipo objEquipo1 = new Equipo("Emelec","Guayaquil");
 
 objEquipo1.AgregarJugador(objJugador1);
 objEquipo1.AgregarJugador(objJugador2);
