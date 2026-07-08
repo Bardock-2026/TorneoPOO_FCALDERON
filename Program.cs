@@ -3,18 +3,7 @@ using TorneoPOO_FCALDERON.Models;
 
 Jugador objJugador1 = new Jugador("Piero Hincapié", 25, 4, "Defensa");
 
-objJugador1.Nombre = "Piero Hincapié";
-objJugador1.Numero = 4;
-objJugador1.Posicion = "Defensa";
-objJugador1.Edad = 25;
-
-
-Jugador objJugador2 = new Jugador();
-
-objJugador2.Nombre = "Enner Valencia";
-objJugador2.Numero = 7;
-objJugador2.Posicion = "Delantero";
-objJugador2.Edad = 32;
+Jugador objJugador2 = new Jugador("Enner Valencia" ,32, 7, "Delantero");
 
 
 Equipo objEquipo1 = new Equipo();

@@ -6,6 +6,10 @@ public class Equipo
     public string Ciudad { get; set; }
     public List<Jugador> Jugadores { get; set; }
 
+
+    
+   
+
     //Acciones: Agregar jugador, listar plantilla.
 
     public void AgregarJugador(Jugador objJugador)
