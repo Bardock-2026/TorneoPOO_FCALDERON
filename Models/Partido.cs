@@ -13,6 +13,12 @@ namespace TorneoPOO_EMANOSALVAS.Models
         public DateTime Fecha { get; set; }
         public string Lugar { get; set; }
 
+
+        //Con
+
+
+
+        //Acciones: programar, mostrar resumen.
         public void Programar(Equipo local, Equipo visitante, DateTime fecha, string lugar)
         {
             this.Local = local;
@@ -28,7 +34,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
         }
 
 
-        //Acciones: programar, mostrar resumen.
+       
 
 
 

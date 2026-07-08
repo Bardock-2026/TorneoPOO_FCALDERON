@@ -7,6 +7,13 @@ public class Equipo
     public List<Jugador> Jugadores { get; set; }
 
 
+    //Constructor
+    public Equipo(string nomnbre, string ciudad) 
+    { 
+        this.Nombre = nomnbre;
+        this.Ciudad = ciudad;
+        this.Jugadores = new List<Jugador>();
+    }
     
    
 
