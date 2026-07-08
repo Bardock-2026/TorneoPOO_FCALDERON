@@ -14,7 +14,16 @@ namespace TorneoPOO_EMANOSALVAS.Models
         public string Lugar { get; set; }
 
 
-        //Con
+        //Contructor
+        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar) 
+        {
+            this.Local = local;
+            this.Visitante  = visitante;
+            this.Fecha = fecha;
+            this.Lugar = lugar; 
+        
+        
+        }
 
 
 
