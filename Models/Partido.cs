@@ -30,6 +30,10 @@ namespace TorneoPOO_EMANOSALVAS.Models
         //Acciones: programar, mostrar resumen.
         public void Programar(Equipo local, Equipo visitante, DateTime fecha, string lugar)
         {
+            if (local == visitante)
+            {
+                throw new Exception("El equipo local y visitante no pueden ser el mismo");
+            }
             this.Local = local;
             this.Visitante = visitante;
             this.Fecha = fecha;
