@@ -8,14 +8,24 @@ public class Equipo
 
 
     //Constructor
-    public Equipo(string nomnbre, string ciudad) 
-    { 
-        this.Nombre = nomnbre;
+    public Equipo(string nombre, string ciudad)
+    {
+        if (nombre == null || nombre.Length == 0)
+        {
+            throw new Exception("El nombre del equipo no puede estar vacío");
+        }
+
+        if (ciudad == null || ciudad.Length == 0)
+        {
+            throw new Exception("La ciudad del equipo no puede estar vacía");
+        }
+
+        this.Nombre = nombre;
         this.Ciudad = ciudad;
         this.Jugadores = new List<Jugador>();
     }
-    
-   
+
+
 
     //Acciones: Agregar jugador, listar plantilla.
 
