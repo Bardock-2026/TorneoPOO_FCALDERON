@@ -34,6 +34,14 @@ public class Equipo
 
         }
     }
-   
+    public bool ImpedirAgregarJugadorNulo(Jugador jugador)
+    {
+        if (jugador == null)
+        {
+            return false;
+        }
+        this.Jugadores.Add(jugador);
+        return true;
+    }
 }
 
