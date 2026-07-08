@@ -8,3 +8,9 @@ Comportamientos de clases
 	Creacion de Metodos
 	Creacion de Constructores
 	Validacion de Datos
+		
+Jugador: validar edad y número de camiseta.
+
+Equipo: impedir nombre o ciudad vacíos, impedir jugador nulo.
+
+Partido: impedir que local y visitante sean el mismo equipo.
