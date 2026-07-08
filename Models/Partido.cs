@@ -15,25 +15,25 @@ namespace TorneoPOO_EMANOSALVAS.Models
 
 
         //Contructor
-        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar) 
+        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar)
         {
+            if (local.Nombre == visitante.Nombre)
+            {
+                throw new Exception("El equipo local y visitante no pueden tener el mismo nombre");
+            }
+
             this.Local = local;
-            this.Visitante  = visitante;
+            this.Visitante = visitante;
             this.Fecha = fecha;
-            this.Lugar = lugar; 
-        
-        
+            this.Lugar = lugar;
         }
-
-
-
-        //Acciones: programar, mostrar resumen.
         public void Programar(Equipo local, Equipo visitante, DateTime fecha, string lugar)
         {
-            if (local == visitante)
+            if (local.Nombre == visitante.Nombre)
             {
-                throw new Exception("El equipo local y visitante no pueden ser el mismo");
+                throw new Exception("No se puede programar un partido con equipos del mismo nombre");
             }
+
             this.Local = local;
             this.Visitante = visitante;
             this.Fecha = fecha;
