@@ -35,7 +35,7 @@ namespace TorneoPOO_FCALDERON.Models
 
         public Boolean EsMayorEdad()
         {
-            if (this.Edad>=18  ) 
+            if (this.Edad>=18) 
             {
                 return true;
 
@@ -45,7 +45,7 @@ namespace TorneoPOO_FCALDERON.Models
 
         public Boolean EsNumeroValido()
         {
-            if(this.Numero>=0 && this.Numero <100 ) 
+            if(this.Numero>=0 && this.Numero <100) 
             {
                 return true;
             }

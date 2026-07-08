@@ -5,3 +5,6 @@ Mi Primera Clase
 
 2026-07-07
 Comportamientos de clases
+	Creacion de Metodos
+	Creacion de Constructores
+	Validacion de Datos

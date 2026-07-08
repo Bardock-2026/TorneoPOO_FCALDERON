@@ -15,27 +15,11 @@ objEquipo1.AgregarJugador(objJugador2);
 
 objEquipo1.ListarPlantilla();
 
-Jugador objJugador3 = new Jugador();
+Jugador objJugador3 = new Jugador("Moiséc Caicedo", 23,5, "Medio Campo");
 
-objJugador3.Nombre = "Moiséc Caicedo";
-objJugador3.Numero = 5;
-objJugador3.Posicion = "Medio Campo";
-objJugador3.Edad = 23;
+Jugador objJugador4 = new Jugador("Neiser Reascos",45,24,"Lateral");
 
-
-Jugador objJugador4 = new Jugador();
-
-objJugador4.Nombre = "Neiser Reascos";
-objJugador4.Numero = 24;
-objJugador4.Posicion = "Lateral";
-objJugador4.Edad = 45;
-
-
-Equipo objEquipo2 = new Equipo();
-
-objEquipo2.Nombre = "Barcelona";
-objEquipo2.Ciudad = "Guayaquil";
-objEquipo2.Jugadores = new List<Jugador>();
+Equipo objEquipo2 = new Equipo("Barcelona","Guayaquil");
 
 objEquipo2.AgregarJugador(objJugador3);
 objEquipo2.AgregarJugador(objJugador4);
