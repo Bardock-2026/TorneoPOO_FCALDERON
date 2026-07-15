@@ -14,3 +14,5 @@ Jugador: validar edad y número de camiseta.
 Equipo: impedir nombre o ciudad vacíos, impedir jugador nulo.
 
 Partido: impedir que local y visitante sean el mismo equipo.
+
+2026/07/14 Creacion de propiedades, Modificadoder de acceso, validaciones en las propiedades

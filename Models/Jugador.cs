@@ -9,17 +9,23 @@ namespace TorneoPOO_FCALDERON.Models
     {
         //ATRIBUTOS O CARACTERISTICAS 
 
-        public string Nombre { get; set; } 
-        public int  Edad {  get; set; }
-
-        public int Numero { get; set; }
-
-        public string Posicion {  get; set; }
-
-        //METODOS, COMPORTAMIENTO O FUNCIONES 
+        private string nombre;
+        private int  edad;
+        private int numero;
+        private string posicion;
+        private string nacionalidad;
+        private string equipo;
+        private int goles;
+        public string Nombre { get => nombre; set => nombre = value; }
+        public int Edad { get => edad; set => edad = value; }
+        public int Numero { get => numero; set => numero = value; }
+        public string Posicion { get => posicion; set => posicion = value; }
+        public string Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
+        public string Equipo { get => equipo; set => equipo = value; }
+        public int Goles { get => goles; set => goles = value; }
 
         //Constructor
-        public Jugador(String nombre, int edad, int numero, string posicion)
+        public Jugador(String nombre, int edad, int numero, string posicion, string nacionalidad, string equipo, int goles)
         {
             if (!EsMayorEdad(edad))
             {
@@ -34,8 +40,11 @@ namespace TorneoPOO_FCALDERON.Models
             this.Edad = edad;
             this.Numero = numero;
             this.Posicion = posicion;
+            this.nacionalidad = nacionalidad;
+            this.equipo = equipo;
+            this.goles = goles;
         }
-
+        //METODOS, COMPORTAMIENTO O FUNCIONES 
 
         public void Presenetar ()
         {

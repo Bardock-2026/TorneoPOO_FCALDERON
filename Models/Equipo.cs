@@ -2,13 +2,25 @@
 
 public class Equipo
 {
-    public string Nombre { get; set; }
-    public string Ciudad { get; set; }
-    public List<Jugador> Jugadores { get; set; }
+    private string nombre;
+    private string ciudad;
+    private List<Jugador> jugadores;
+    private string entrenador;
+    private int titulos;
+    private string estadio;
+
+    public string Nombre { get => nombre; set => nombre = value; }
+    public string Ciudad { get => ciudad; set => ciudad = value; }
+    public List<Jugador> Jugadores { get => jugadores; set => jugadores = value; }
+    public string Entrenador { get => entrenador; set => entrenador = value; }
+    public int Titulos { get => titulos; set => titulos = value; }
+    public string Estadio { get => estadio; set => estadio = value; }
+
+
 
 
     //Constructor
-    public Equipo(string nombre, string ciudad)
+    public Equipo(string nombre, string ciudad, string entrenador, int titulos, string estadio)
     {
         if (nombre == null || nombre.Length == 0)
         {
@@ -23,6 +35,9 @@ public class Equipo
         this.Nombre = nombre;
         this.Ciudad = ciudad;
         this.Jugadores = new List<Jugador>();
+        this.entrenador = entrenador;
+        this.titulos = titulos;
+        this.estadio = estadio;
     }
 
 

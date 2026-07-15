@@ -8,14 +8,26 @@ namespace TorneoPOO_EMANOSALVAS.Models
 {
     public class Partido
     {
-        public Equipo Local { get; set; }
-        public Equipo Visitante { get; set; }
-        public DateTime Fecha { get; set; }
-        public string Lugar { get; set; }
+        private Equipo local;
+        private Equipo visitante;
+        private DateTime fecha;
+        private string lugar;
+        private int golesLocal;
+        private int golesVisitante;
+        private string arbitro;
+        public Equipo Local { get => local; set => local = value; }
+        public Equipo Visitante { get => visitante; set => visitante = value; }
+        public DateTime Fecha { get => fecha; set => fecha = value; }
+        public string Lugar { get => lugar; set => lugar = value; }
+        public int GolesLocal { get => golesLocal; set => golesLocal = value; }
+        public int GolesVisitante { get => golesVisitante; set => golesVisitante = value; }
+        public string Arbitro { get => arbitro; set => arbitro = value; }
+
+
 
 
         //Contructor
-        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar)
+        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
         {
             if (local.Nombre == visitante.Nombre)
             {
@@ -26,21 +38,11 @@ namespace TorneoPOO_EMANOSALVAS.Models
             this.Visitante = visitante;
             this.Fecha = fecha;
             this.Lugar = lugar;
+            this.golesLocal = golesLocal;
+            this.golesVisitante = golesVisitante;
+            this.arbitro = arbitro;
         }
-        public void Programar(Equipo local, Equipo visitante, DateTime fecha, string lugar)
-        {
-            if (local.Nombre == visitante.Nombre)
-            {
-                throw new Exception("No se puede programar un partido con equipos del mismo nombre");
-            }
-
-            this.Local = local;
-            this.Visitante = visitante;
-            this.Fecha = fecha;
-            this.Lugar = lugar;
-            Console.WriteLine("Partido programado correctamente");
-        }
-
+        
         public void MostrarResumen()
         {
             Console.WriteLine($"Hay un partido programado entre el local {this.Local.Nombre} y el visitante {this.Visitante.Nombre} en el lugar {this.Lugar}");
