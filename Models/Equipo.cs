@@ -12,11 +12,47 @@ public class Equipo
     public string Nombre { get => nombre; set => nombre = value; }
     public string Ciudad { get => ciudad; set => ciudad = value; }
     public List<Jugador> Jugadores { get => jugadores; set => jugadores = value; }
-    public string Entrenador { get => entrenador; set => entrenador = value; }
-    public int Titulos { get => titulos; set => titulos = value; }
-    public string Estadio { get => estadio; set => estadio = value; }
+    public string Entrenador
+    {
+        get => entrenador;
+        set
+        {
+            if (value == null || value == "")
+            {
+                Console.WriteLine("El nombre del entrenador no puede estar vacío.");
+                return;
+            }
+            entrenador = value;
+        }
+    }
 
+    public int Titulos
+    {
+        get => titulos;
+        set
+        {
+            if (value < 0)
+            {
+                Console.WriteLine("La cantidad de títulos no puede ser negativa.");
+                return;
+            }
+            titulos = value;
+        }
+    }
 
+    public string Estadio
+    {
+        get => estadio;
+        set
+        {
+            if (value == null || value == "")
+            {
+                Console.WriteLine("El nombre del estadio no puede estar vacío.");
+                return;
+            }
+            estadio = value;
+        }
+    }
 
 
     //Constructor

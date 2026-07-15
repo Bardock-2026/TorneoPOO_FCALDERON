@@ -20,9 +20,47 @@ namespace TorneoPOO_FCALDERON.Models
         public int Edad { get => edad; set => edad = value; }
         public int Numero { get => numero; set => numero = value; }
         public string Posicion { get => posicion; set => posicion = value; }
-        public string Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
-        public string Equipo { get => equipo; set => equipo = value; }
-        public int Goles { get => goles; set => goles = value; }
+        public string Nacionalidad
+        {
+            get => nacionalidad;
+            set
+            {
+                if (value == null || value == "")
+                {
+                    Console.WriteLine("La nacionalidad no puede estar vacía.");
+                    return;
+                }
+                nacionalidad = value;
+            }
+        }
+
+        public string Equipo
+        {
+            get => equipo;
+            set
+            {
+                if (value == null || value.Length < 3)
+                {
+                    Console.WriteLine("El nombre del equipo debe tener al menos 3 caracteres.");
+                    return;
+                }
+                equipo = value;
+            }
+        }
+
+        public int Goles
+        {
+            get => goles;
+            set
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Los goles no pueden ser negativos.");
+                    return;
+                }
+                goles = value;
+            }
+        }
 
         //Constructor
         public Jugador(String nombre, int edad, int numero, string posicion, string nacionalidad, string equipo, int goles)

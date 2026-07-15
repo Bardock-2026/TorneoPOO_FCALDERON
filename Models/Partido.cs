@@ -19,14 +19,50 @@ namespace TorneoPOO_EMANOSALVAS.Models
         public Equipo Visitante { get => visitante; set => visitante = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public string Lugar { get => lugar; set => lugar = value; }
-        public int GolesLocal { get => golesLocal; set => golesLocal = value; }
-        public int GolesVisitante { get => golesVisitante; set => golesVisitante = value; }
-        public string Arbitro { get => arbitro; set => arbitro = value; }
+        public int GolesLocal
+        {
+            get => golesLocal;
+            set
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Los goles del equipo local no pueden ser negativos.");
+                    return;
+                }
+                golesLocal = value;
+            }
+        }
 
+        public int GolesVisitante
+        {
+            get => golesVisitante;
+            set
+            {
+                if (value < 0)
+                {
+                    Console.WriteLine("Los goles del equipo visitante no pueden ser negativos.");
+                    return;
+                }
+                golesVisitante = value;
+            }
+        }
 
+        public string Arbitro
+        {
+            get => arbitro;
+            set
+            {
+                if (value == null || value == "")
+                {
+                    Console.WriteLine("El nombre del árbitro no puede estar vacío.");
+                    return;
+                }
+                arbitro = value;
+            }
+        }
 
-
-        //Contructor
+        
+                //Contructor
         public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
         {
             if (local.Nombre == visitante.Nombre)
