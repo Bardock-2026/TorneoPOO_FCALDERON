@@ -89,8 +89,5 @@ namespace TorneoPOO_EMANOSALVAS.Models
             return this.Local != this.Visitante;
         }
 
-
-
-
     }
 }

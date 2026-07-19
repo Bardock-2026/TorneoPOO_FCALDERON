@@ -16,6 +16,7 @@ namespace TorneoPOO_FCALDERON.Models
         private string nacionalidad;
         private string equipo;
         private int goles;
+        private string fichado;
         public string Nombre { get => nombre; set => nombre = value; }
         public int Edad { get => edad; set => edad = value; }
         public int Numero { get => numero; set => numero = value; }
@@ -61,6 +62,7 @@ namespace TorneoPOO_FCALDERON.Models
                 goles = value;
             }
         }
+        public string Fichado { get => fichado; }
 
         //Constructor
         public Jugador(String nombre, int edad, int numero, string posicion, string nacionalidad, string equipo, int goles)
@@ -81,6 +83,7 @@ namespace TorneoPOO_FCALDERON.Models
             this.nacionalidad = nacionalidad;
             this.equipo = equipo;
             this.goles = goles;
+            this.fichado = "N";
         }
         //METODOS, COMPORTAMIENTO O FUNCIONES 
 
@@ -123,7 +126,21 @@ namespace TorneoPOO_FCALDERON.Models
                 return false;
             }
         }
-
+        public void Imprimir()
+        {
+            Console.WriteLine($"Nombre: {this.nombre}");
+            Console.WriteLine($"Edad: {this.edad}");
+            Console.WriteLine($"Numero {this.numero}");
+            Console.WriteLine($"Posicion {this.posicion}");
+            Console.WriteLine($"Nacionalidad {this.nacionalidad} ");
+            Console.WriteLine($"Equipo {this.equipo}");
+            Console.WriteLine($"Goles {this.Goles}");
+            Console.WriteLine($"Fichado {this.fichado}");
+        } 
+        private void Fichar()
+        {
+            this.fichado = "S";
+        }
 
     }
 }

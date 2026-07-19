@@ -24,3 +24,6 @@ se agrego 3 validaciones en los 3 atributos nuevos, y se modifico el program par
 
 Creacion de Menu
 Almacenamientos de datos en la memoria(database)
+
+2026/19/07
+CRUD a la clase jugador
