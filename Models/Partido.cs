@@ -8,6 +8,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
 {
     public class Partido
     {
+        private int id; // Identificador UNICO OJOOOOOO
         private Equipo local;
         private Equipo visitante;
         private DateTime fecha;
@@ -88,6 +89,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
         {
             return this.Local != this.Visitante;
         }
-
+        
+        // AÑADIR IMPRIMIR PARTIDO
     }
 }

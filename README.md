@@ -29,3 +29,4 @@ Almacenamientos de datos en la memoria(database)
 CRUD a la clase jugador
 Se agrego Crear equipo al program
 equipo fichao en jugador 
+Se agrego crud en equipo, aun falta eliminar equipo, queda como deber 

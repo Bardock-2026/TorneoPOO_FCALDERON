@@ -105,5 +105,28 @@ public class Equipo
         this.Jugadores.Add(jugador);
         return true;
     }
-}
 
+    public void Imprimir()
+    {
+        Console.WriteLine($"Nombre del equipo: {Nombre}");
+        Console.WriteLine($"Ciudad del equipo: {Ciudad}");
+        Console.WriteLine($"Entrenador: {Entrenador}");
+        Console.WriteLine($"Títulos: {Titulos}");
+        Console.WriteLine($"Estadio: {Estadio}");
+        Console.WriteLine("------------------------------------");
+
+        if (Jugadores.Count > 0)
+        {
+            Console.WriteLine($"La lista de jugadores del equipo {Nombre} de la ciudad de {Ciudad} es: ");
+            foreach (Jugador objJugador in Jugadores)
+            {
+                objJugador.Imprimir();
+                Console.WriteLine("------------------------------------");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Este equipo aún no tiene jugadores fichados.");
+        }
+    }
+}

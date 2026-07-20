@@ -54,8 +54,16 @@ do
     Console.WriteLine("4.- Actualizar Jugador");
     Console.WriteLine("5.- Eliminar Jugador");
     Console.WriteLine("6.- Crear Equipos");
-    Console.WriteLine("7.- Crear Partidos");
-    Console.WriteLine("8.- Salir");
+    Console.WriteLine("7.- Listar Equipos");
+    Console.WriteLine("8.- Buscar Equipos");
+    Console.WriteLine("9.- Actualizar Equipos");// ya esta el deber 
+    Console.WriteLine("10.- Elminar Equipos"); // deber
+    Console.WriteLine("11.- Crear Partidos");// deber
+    Console.WriteLine("12.- Listar Partidos");// deber
+    Console.WriteLine("13.- Buscar Partido");// deber
+    Console.WriteLine("14.- Actualizar Partido");// deber
+    Console.WriteLine("15.- Eliminar Partido");// deber
+    Console.WriteLine("16.- Salir");
     Console.WriteLine("");
     Console.Write("Ingrese una opción: ");
     opcion = Convert.ToInt32(Console.ReadLine());
@@ -82,9 +90,33 @@ do
             crearEquipo();
             break;
         case 7:
-            crearPartido();
+            listarEquipo();
             break;
         case 8:
+            buscarEquipo();
+            break;
+        case 9:
+            actualizarEquipo();
+            break;
+        case 10:
+            eliminarEquipo();
+            break;
+        case 11:
+            crearPartido();
+            break;
+        case 12:
+            listarPartido();
+            break;
+        case 13:
+            buscarPartido();
+            break;
+        case 14:
+            actualizarPartido();
+            break;
+        case 15:
+            eliminarPartido();
+            break;
+        case 16:
             Console.WriteLine("Saliendo del programa...");
             break;
         default:
@@ -92,7 +124,7 @@ do
             break;
     }
 
-} while (opcion != 8);
+} while (opcion != 16);
 
 void listarJugadores()
 {
@@ -201,10 +233,78 @@ void EliminarJugador()
     Console.ReadLine();   
 
 }
+void actualizarEquipo()
+{
+    Console.Clear();
+    Console.WriteLine("**********Actualizar Equipo***********");
+    Console.WriteLine("Ingrese el nombre del equipo a actualizar: ");
+    string nombreIngresado = Console.ReadLine();
+    Equipo objEquipo = Database.Equipos.Find(j => j.Nombre.ToUpper() == nombreIngresado.ToUpper());
 
+    if (objEquipo != null)
+    {
+        Console.WriteLine("Equipo Encontrado!!!");
+        Console.WriteLine("_____________________________________");
+        objEquipo.Imprimir();   
+        Console.WriteLine("_____________________________________");
 
+        Console.WriteLine("Ingrese el nuevo nombre del equipo: ");
+        objEquipo.Nombre = Console.ReadLine();
 
+        Console.WriteLine("Ingrese la nueva ciudad del equipo: ");
+        objEquipo.Ciudad = Console.ReadLine();
 
+        Console.WriteLine("Ingrese el nuevo entrenador: ");
+        objEquipo.Entrenador = Console.ReadLine();
+
+        Console.WriteLine("Ingrese la cantidad de títulos del equipo: ");
+        objEquipo.Titulos = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el estadio donde juega el equipo: ");
+        objEquipo.Estadio = Console.ReadLine();
+
+        Console.WriteLine("Equipo actualizado exitosamente!!");
+    }
+    else
+    {
+        Console.WriteLine("Equipo NO encontrado...");
+    }
+    Console.ReadLine();
+}
+
+void listarEquipo()
+{
+    Console.Clear();
+    Console.WriteLine("**********Equipos Creados**********");
+    foreach (Equipo equipo in Database.Equipos)
+    {
+        equipo.Imprimir();
+        Console.WriteLine("_____________________________________");
+    }
+    Console.ReadLine();
+}
+void buscarEquipo()
+{
+    Console.Clear();
+    Console.WriteLine("**********Buscar Equipo**********");
+    Console.WriteLine("Ingrese el nombre del equipo a buscar: ");
+    string nombreIngresado = Console.ReadLine();
+    Equipo objEquipo = Database.Equipos.Find(j => j.Nombre == nombreIngresado);
+
+    if (objEquipo != null)
+    {
+        Console.WriteLine("Equipo Encontrado!!");
+        Console.WriteLine("_____________________________________");
+        objEquipo.Imprimir();         
+        objEquipo.ListarPlantilla();   
+    }
+    else
+    {
+        Console.Write("Equipo NO encontrado.... ");
+        Console.WriteLine("_____________________________________");
+    }
+    Console.ReadLine();
+}
 
 
 
@@ -232,6 +332,7 @@ void crearEquipo()
     string estadio = Console.ReadLine();
 
     Equipo objEquipo = new Equipo(nombre, ciudad, entrenador, titulos, estadio);
+    Database.Equipos.Add(objEquipo); 
     Console.WriteLine("Equipo creado exitosamente!!");
 
     string respuesta = "";
@@ -247,7 +348,7 @@ void crearEquipo()
             if (objJugador != null)
             {
                 objEquipo.AgregarJugador(objJugador);
-                objJugador.Fichar();
+                objJugador.Fichar(objEquipo);
                 Console.WriteLine($"El jugador {objJugador.Nombre} fue fichado en el equipo {objEquipo.Nombre} con éxito!!");
             }
             else
@@ -256,6 +357,7 @@ void crearEquipo()
             }
         }
     } while (respuesta == "S");
+
     objEquipo.ListarPlantilla();
     Console.ReadLine();
 }
