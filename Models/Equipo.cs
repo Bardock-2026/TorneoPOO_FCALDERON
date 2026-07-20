@@ -91,7 +91,8 @@ public class Equipo
         Console.WriteLine($"La lista de jugadores del equipo {this.Nombre} de la ciudad de {this.Ciudad} es: ");
         foreach(Jugador objJugador in Jugadores)
         {
-            objJugador.Presenetar();
+            objJugador.Imprimir();
+            Console.WriteLine("________________________________");
 
         }
     }

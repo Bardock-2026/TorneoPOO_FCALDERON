@@ -32,12 +32,17 @@
 //Partido objPartido1 = new Partido(objEquipo1, objEquipo2, DateTime.Now, "Estadio Modelo", 2, 1, "Carlos Vera");
 //objPartido1.MostrarResumen();
 
+using System.Linq.Expressions;
 using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
 
 int opcion = 0;
-Jugador objJug1 = new Jugador("Fernando",36,10,"delantero","Guayaquileño","Barcelona",20);
+Jugador objJug1 = new Jugador("Fernando Calderon ", 36 , 10 , "delantero" , "Guayaquileño", "Barcelona", 20);
+Jugador objJug2 = new Jugador("Enner Valencia", 32, 7, "Delantero", "Guayaquileño", "Emelec", 21);
+Jugador objJug3 = new Jugador("Neiser Reascos", 45, 24, "Lateral", "Quiteño", "Barcelona", 25);
 Database.Jugadores.Add(objJug1);
+Database.Jugadores.Add(objJug2);
+Database.Jugadores.Add(objJug3);
 do
 {
     Console.Clear();
@@ -186,7 +191,7 @@ void EliminarJugador()
         {
             Console.WriteLine("Operacion Cancelada!!");
         }
-       
+        
     }
     else
     {
@@ -214,6 +219,45 @@ void crearPartido()
 void crearEquipo()
 {
     Console.Clear();
+    Console.WriteLine("***************Crear Equipo******************");
+    Console.WriteLine("Ingrese el nombre del equipo: ");
+    string nombre = Console.ReadLine();
+    Console.WriteLine("Ingrese la ciudad del equipo: ");
+    string ciudad = Console.ReadLine();
+    Console.WriteLine("Ingrese el entrenador: ");
+    string entrenador = Console.ReadLine();
+    Console.WriteLine("Ingrese la cantidad de títulos del equipo: ");
+    int titulos = Convert.ToInt32(Console.ReadLine());
+    Console.WriteLine("Ingrese el estadio donde juega el equipo: ");
+    string estadio = Console.ReadLine();
+
+    Equipo objEquipo = new Equipo(nombre, ciudad, entrenador, titulos, estadio);
+    Console.WriteLine("Equipo creado exitosamente!!");
+
+    string respuesta = "";
+    do
+    {
+        Console.WriteLine("¿Desea ingresar jugadores al equipo? (S/N)");
+        respuesta = Console.ReadLine().ToUpper();
+        if (respuesta == "S")
+        {
+            Console.WriteLine("Ingrese el nombre del jugador a fichar: ");
+            string nombreIngresado = Console.ReadLine();
+            Jugador objJugador = Database.Jugadores.Find(x => x.Nombre == nombreIngresado);
+            if (objJugador != null)
+            {
+                objEquipo.AgregarJugador(objJugador);
+                objJugador.Fichar();
+                Console.WriteLine($"El jugador {objJugador.Nombre} fue fichado en el equipo {objEquipo.Nombre} con éxito!!");
+            }
+            else
+            {
+                Console.WriteLine("Jugador no encontrado en la base de datos.");
+            }
+        }
+    } while (respuesta == "S");
+    objEquipo.ListarPlantilla();
+    Console.ReadLine();
 }
 
 void crearJugador()

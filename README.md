@@ -27,3 +27,5 @@ Almacenamientos de datos en la memoria(database)
 
 2026/19/07
 CRUD a la clase jugador
+Se agrego Crear equipo al program
+equipo fichao en jugador 

@@ -17,6 +17,10 @@ namespace TorneoPOO_FCALDERON.Models
         private string equipo;
         private int goles;
         private string fichado;
+        private Equipo equipo_actual;
+
+        //Propiedades 
+
         public string Nombre { get => nombre; set => nombre = value; }
         public int Edad { get => edad; set => edad = value; }
         public int Numero { get => numero; set => numero = value; }
@@ -84,6 +88,7 @@ namespace TorneoPOO_FCALDERON.Models
             this.equipo = equipo;
             this.goles = goles;
             this.fichado = "N";
+            equipo_actual = null;
         }
         //METODOS, COMPORTAMIENTO O FUNCIONES 
 
@@ -136,10 +141,12 @@ namespace TorneoPOO_FCALDERON.Models
             Console.WriteLine($"Equipo {this.equipo}");
             Console.WriteLine($"Goles {this.Goles}");
             Console.WriteLine($"Fichado {this.fichado}");
+            Console.WriteLine($"Equipo Actual: {(this.equipo_actual !=null ? this.equipo_actual.Nombre : "Sin Equipo")}" );
         } 
-        private void Fichar()
+        public void Fichar(Equipo objEquipoFichado)
         {
             this.fichado = "S";
+            this.equipo_actual = objEquipoFichado;
         }
 
     }
