@@ -59,7 +59,7 @@ do
     Console.WriteLine("8.- Buscar Equipos");
     Console.WriteLine("9.- Actualizar Equipos");// ya esta el deber 
     Console.WriteLine("10.- Elminar Equipos"); // deber /ya esta
-    Console.WriteLine("11.- Crear Partidos");// deber
+    Console.WriteLine("11.- Crear Partidos");// deber / ya esta
     Console.WriteLine("12.- Listar Partidos");// deber
     Console.WriteLine("13.- Buscar Partido");// deber
     Console.WriteLine("14.- Actualizar Partido");// deber
@@ -105,9 +105,9 @@ do
         case 11:
             crearPartido();
             break;
-        //case 12:
-        //    listarPartido();
-        //    break;
+        case 12:
+            listarPartido();
+            break;
         //case 13:
         //    buscarPartido();
         //    break;
@@ -341,6 +341,20 @@ void eliminarEquipo()
     }
     Console.ReadLine();
 }
+
+void listarPartido()
+{
+    Console.Clear();
+    Console.WriteLine("**********Partidos Creados**********");
+    foreach (Partido partido in Database.Partidos)
+    {
+        partido.Imprimir();
+        Console.WriteLine("_____________________________________");
+    }
+    Console.ReadLine();
+}
+
+
 void crearPartido()
 {
     Console.Clear();
