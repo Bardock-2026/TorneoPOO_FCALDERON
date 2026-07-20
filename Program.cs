@@ -57,7 +57,7 @@ do
     Console.WriteLine("7.- Listar Equipos");
     Console.WriteLine("8.- Buscar Equipos");
     Console.WriteLine("9.- Actualizar Equipos");// ya esta el deber 
-    Console.WriteLine("10.- Elminar Equipos"); // deber
+    Console.WriteLine("10.- Elminar Equipos"); // deber /ya esta
     Console.WriteLine("11.- Crear Partidos");// deber
     Console.WriteLine("12.- Listar Partidos");// deber
     Console.WriteLine("13.- Buscar Partido");// deber
@@ -305,7 +305,41 @@ void buscarEquipo()
     }
     Console.ReadLine();
 }
+void eliminarEquipo()
+{
+    Console.Clear();
+    Console.WriteLine("**********Eliminar Equipo**********");
+    Console.WriteLine("Ingrese el nombre del equipo a eliminar: ");
+    string nombreIngresado = Console.ReadLine();
 
+    Equipo objEquipo = Database.Equipos.Find(e => e.Nombre == nombreIngresado);
+
+    if (objEquipo != null)
+    {
+        Console.WriteLine("_____________________________________");
+        objEquipo.Imprimir();  
+        Console.WriteLine("_____________________________________");
+
+        Console.WriteLine($"¿Estás seguro que quieres eliminar el equipo {objEquipo.Nombre}? S/N:");
+        if (Console.ReadLine().ToUpper() == "S")
+        {
+            Database.Equipos.Remove(objEquipo);
+            Console.WriteLine("Equipo eliminado exitosamente!!");
+            Console.WriteLine("_____________________________________");
+        }
+        else
+        {
+            Console.WriteLine("Operación cancelada!!");
+            Console.WriteLine("_____________________________________");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Equipo NO encontrado!!");
+        Console.WriteLine("_____________________________________");
+    }
+    Console.ReadLine();
+}
 
 
 
