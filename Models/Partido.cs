@@ -75,9 +75,9 @@ namespace TorneoPOO_EMANOSALVAS.Models
             }
         }
 
-        
-                //Contructor
-        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
+
+        //Contructor
+        public Partido(int id, Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
         {
             if (local.Nombre == visitante.Nombre)
             {

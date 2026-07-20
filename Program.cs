@@ -33,6 +33,7 @@
 //objPartido1.MostrarResumen();
 
 using System.Linq.Expressions;
+using TorneoPOO_EMANOSALVAS.Models;
 using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
 
@@ -104,18 +105,18 @@ do
         case 11:
             crearPartido();
             break;
-        case 12:
-            listarPartido();
-            break;
-        case 13:
-            buscarPartido();
-            break;
-        case 14:
-            actualizarPartido();
-            break;
-        case 15:
-            eliminarPartido();
-            break;
+        //case 12:
+        //    listarPartido();
+        //    break;
+        //case 13:
+        //    buscarPartido();
+        //    break;
+        //case 14:
+        //    actualizarPartido();
+        //    break;
+        //case 15:
+        //    eliminarPartido();
+        //    break;
         case 16:
             Console.WriteLine("Saliendo del programa...");
             break;
@@ -340,14 +341,36 @@ void eliminarEquipo()
     }
     Console.ReadLine();
 }
-
-
-
-
-
 void crearPartido()
 {
     Console.Clear();
+    Console.WriteLine("**********Crear Partido**********");
+
+    Console.WriteLine("Ingrese el ID del partido: ");
+    int id = Convert.ToInt32(Console.ReadLine());
+
+    Console.WriteLine("Ingrese el nombre del equipo local: ");
+    string nombreLocal = Console.ReadLine();
+    Equipo equipoLocal = Database.Equipos.Find(e => e.Nombre == nombreLocal);
+
+    Console.WriteLine("Ingrese el nombre del equipo visitante: ");
+    string nombreVisitante = Console.ReadLine();
+    Equipo equipoVisitante = Database.Equipos.Find(e => e.Nombre == nombreVisitante);
+
+    Console.WriteLine("Ingrese la fecha del partido (dd/mm/yyyy): ");
+    DateTime fecha = Convert.ToDateTime(Console.ReadLine());
+
+    Console.WriteLine("Ingrese el lugar del partido: ");
+    string lugar = Console.ReadLine();
+
+    Console.WriteLine("Ingrese el árbitro del partido: ");
+    string arbitro = Console.ReadLine();
+
+    Partido objPartido = new Partido(id, equipoLocal, equipoVisitante, fecha, lugar, 0, 0, arbitro);
+    Database.Partidos.Add(objPartido);
+
+    Console.WriteLine("Partido creado exitosamente!!");
+    Console.ReadLine();
 }
 
 void crearEquipo()
