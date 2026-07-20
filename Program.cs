@@ -60,8 +60,8 @@ do
     Console.WriteLine("9.- Actualizar Equipos");// ya esta el deber 
     Console.WriteLine("10.- Elminar Equipos"); // deber /ya esta
     Console.WriteLine("11.- Crear Partidos");// deber / ya esta
-    Console.WriteLine("12.- Listar Partidos");// deber
-    Console.WriteLine("13.- Buscar Partido");// deber
+    Console.WriteLine("12.- Listar Partidos");// deber / ya esta
+    Console.WriteLine("13.- Buscar Partido");// deber /ya esta
     Console.WriteLine("14.- Actualizar Partido");// deber
     Console.WriteLine("15.- Eliminar Partido");// deber
     Console.WriteLine("16.- Salir");
@@ -111,12 +111,12 @@ do
         case 13:
             buscarPartido();
             break;
-        //case 14:
-        //    actualizarPartido();
-        //    break;
-        //case 15:
-        //    eliminarPartido();
-        //    break;
+        case 14:
+            actualizarPartido();
+            break;
+        case 15:
+            eliminarPartido();
+            break;
         case 16:
             Console.WriteLine("Saliendo del programa...");
             break;
@@ -371,6 +371,84 @@ void buscarPartido()
     else
     {
         Console.WriteLine("Partido NO encontrado....");
+    }
+    Console.ReadLine();
+}
+void actualizarPartido()
+{
+    Console.Clear();
+    Console.WriteLine("**********Actualizar Partido**********");
+    Console.WriteLine("Ingrese el ID del partido a actualizar: ");
+    int id_Ingresada = Convert.ToInt32(Console.ReadLine());
+
+    Partido objPartido = Database.Partidos.Find(p => p.Id == id_Ingresada);
+
+    if (objPartido != null)
+    {
+        Console.WriteLine("Partido Encontrado!!!");
+        Console.WriteLine("_____________________________________");
+        objPartido.Imprimir();
+        Console.WriteLine("_____________________________________");
+
+        Console.WriteLine("Ingrese el nuevo nombre del equipo local: ");
+        string nombreLocal = Console.ReadLine();
+        Equipo equipoLocal = Database.Equipos.Find(e => e.Nombre == nombreLocal);
+        if (equipoLocal != null) objPartido.Local = equipoLocal;
+
+        Console.WriteLine("Ingrese el nuevo nombre del equipo visitante: ");
+        string nombreVisitante = Console.ReadLine();
+        Equipo equipoVisitante = Database.Equipos.Find(e => e.Nombre == nombreVisitante);
+        if (equipoVisitante != null) objPartido.Visitante = equipoVisitante;
+
+        Console.WriteLine("Ingrese la nueva fecha del partido (dd/mm/yyyy): ");
+        objPartido.Fecha = Convert.ToDateTime(Console.ReadLine());
+
+        Console.WriteLine("Ingrese el nuevo lugar del partido: ");
+        objPartido.Lugar = Console.ReadLine();
+
+        Console.WriteLine("Ingrese el nuevo árbitro del partido: ");
+        objPartido.Arbitro = Console.ReadLine();
+
+        Console.WriteLine("Ingrese los goles del equipo local: ");
+        objPartido.GolesLocal = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Ingrese los goles del equipo visitante: ");
+        objPartido.GolesVisitante = Convert.ToInt32(Console.ReadLine());
+
+        Console.WriteLine("Partido actualizado exitosamente!!");
+    }
+    else
+    {
+        Console.WriteLine("Partido NO encontrado...");
+    }
+    Console.ReadLine();
+}
+void eliminarPartido()
+{
+    Console.Clear();
+    Console.WriteLine("**********Eliminar Partido**********");
+    Console.WriteLine("Ingrese el ID del partido a eliminar: ");
+    int id_Ingresada = Convert.ToInt32(Console.ReadLine());
+
+    Partido objPartido = Database.Partidos.Find(p => p.Id == id_Ingresada);
+
+    if (objPartido != null)
+    {
+        objPartido.Imprimir();
+        Console.WriteLine("¿Estás seguro que quieres eliminar este partido? S/N:");
+        if (Console.ReadLine().ToUpper() == "S")
+        {
+            Database.Partidos.Remove(objPartido);
+            Console.WriteLine("Partido eliminado exitosamente!!");
+        }
+        else
+        {
+            Console.WriteLine("Operación cancelada!!");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Partido NO encontrado!!");
     }
     Console.ReadLine();
 }
