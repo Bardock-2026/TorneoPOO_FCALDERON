@@ -16,6 +16,19 @@ namespace TorneoPOO_EMANOSALVAS.Models
         private int golesLocal;
         private int golesVisitante;
         private string arbitro;
+        public int Id
+        {
+            get => id;
+            set
+            {
+                if (value <= 0)
+                {
+                    Console.WriteLine("El ID del partido debe ser mayor a 0.");
+                    return;
+                }
+                id = value;
+            }
+        }
         public Equipo Local { get => local; set => local = value; }
         public Equipo Visitante { get => visitante; set => visitante = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
@@ -70,7 +83,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
             {
                 throw new Exception("El equipo local y visitante no pueden tener el mismo nombre");
             }
-
+            this.Id = id;
             this.Local = local;
             this.Visitante = visitante;
             this.Fecha = fecha;
@@ -89,7 +102,18 @@ namespace TorneoPOO_EMANOSALVAS.Models
         {
             return this.Local != this.Visitante;
         }
-        
+
         // AÑADIR IMPRIMIR PARTIDO
+        public void Imprimir()
+        {
+            Console.WriteLine($"ID del partido: {Id}");
+            Console.WriteLine($"Equipo Local: {Local.Nombre}");
+            Console.WriteLine($"Equipo Visitante: {Visitante.Nombre}");
+            Console.WriteLine($"Fecha: {Fecha.ToShortDateString()}");
+            Console.WriteLine($"Lugar: {Lugar}");
+            Console.WriteLine($"Árbitro: {Arbitro}");
+            Console.WriteLine($"Resultado: {GolesLocal} - {GolesVisitante}");
+            Console.WriteLine("------------------------------------");
+        }
     }
 }
