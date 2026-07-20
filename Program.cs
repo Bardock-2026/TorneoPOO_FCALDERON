@@ -108,9 +108,9 @@ do
         case 12:
             listarPartido();
             break;
-        //case 13:
-        //    buscarPartido();
-        //    break;
+        case 13:
+            buscarPartido();
+            break;
         //case 14:
         //    actualizarPartido();
         //    break;
@@ -354,6 +354,26 @@ void listarPartido()
     Console.ReadLine();
 }
 
+void buscarPartido()
+{
+    Console.Clear();
+    Console.WriteLine("**********Buscar Partido**********");
+    Console.WriteLine("Ingrese el ID del partido: ");
+    int id_Ingresada = Convert.ToInt32(Console.ReadLine());
+
+    Partido objPartido = Database.Partidos.Find(p => p.Id == id_Ingresada);
+
+    if (objPartido != null)
+    {
+        Console.WriteLine("Partido Encontrado!!");
+        objPartido.Imprimir();
+    }
+    else
+    {
+        Console.WriteLine("Partido NO encontrado....");
+    }
+    Console.ReadLine();
+}
 
 void crearPartido()
 {
