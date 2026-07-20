@@ -31,3 +31,5 @@ Se agrego Crear equipo al program
 equipo fichao en jugador 
 Se agrego crud en equipo, aun falta eliminar equipo, queda como deber 
 Se comieza a modificar clase partido con funcion imprimir
+Se actualiza funcion eliminar equipo 
+Se realiza CRUD de la clase Partido
