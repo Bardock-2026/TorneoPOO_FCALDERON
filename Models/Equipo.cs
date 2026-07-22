@@ -1,4 +1,5 @@
-﻿using TorneoPOO_FCALDERON.Models;
+﻿using TorneoPOO_FCALDERON.Generales;
+using TorneoPOO_FCALDERON.Models;
 
 public class Equipo
 {
@@ -8,7 +9,7 @@ public class Equipo
     private string entrenador;
     private int titulos;
     private string estadio;
-
+    private int id;// Principal
     public string Nombre { get => nombre; set => nombre = value; }
     public string Ciudad { get => ciudad; set => ciudad = value; }
     public List<Jugador> Jugadores { get => jugadores; set => jugadores = value; }
@@ -53,7 +54,7 @@ public class Equipo
             estadio = value;
         }
     }
-
+    public int Id { get => id; set => id = value; }
 
     //Constructor
     public Equipo(string nombre, string ciudad, string entrenador, int titulos, string estadio)
@@ -74,6 +75,14 @@ public class Equipo
         this.entrenador = entrenador;
         this.titulos = titulos;
         this.estadio = estadio;
+        if (Database.Equipos.Count == 0)
+        {
+            this.id = 1;
+        }
+        else
+        {
+            this.id = Database.Equipos.Max(x => x.id) + 1;
+        }
     }
 
 
@@ -108,11 +117,12 @@ public class Equipo
 
     public void Imprimir()
     {
-        Console.WriteLine($"Nombre del equipo: {Nombre}");
-        Console.WriteLine($"Ciudad del equipo: {Ciudad}");
-        Console.WriteLine($"Entrenador: {Entrenador}");
-        Console.WriteLine($"Títulos: {Titulos}");
-        Console.WriteLine($"Estadio: {Estadio}");
+        Console.WriteLine($"ID: {this.id}");
+        Console.WriteLine($"Nombre del equipo: {this.Nombre}");
+        Console.WriteLine($"Ciudad del equipo: {this.Ciudad}");
+        Console.WriteLine($"Entrenador: {this.Entrenador}");
+        Console.WriteLine($"Títulos: {this.Titulos}");
+        Console.WriteLine($"Estadio: {this.Estadio}");
         Console.WriteLine("------------------------------------");
 
         if (Jugadores.Count > 0)

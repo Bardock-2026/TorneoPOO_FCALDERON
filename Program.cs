@@ -36,14 +36,8 @@ using System.Linq.Expressions;
 using TorneoPOO_EMANOSALVAS.Models;
 using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
-
+Database.CargarDatos();  // ESTO ES IMPORTANTE!!! 
 int opcion = 0;
-Jugador objJug1 = new Jugador("Fernando Calderon ", 36 , 10 , "delantero" , "Guayaquileño", "Barcelona", 20);
-Jugador objJug2 = new Jugador("Enner Valencia", 32, 7, "Delantero", "Guayaquileño", "Emelec", 21);
-Jugador objJug3 = new Jugador("Neiser Reascos", 45, 24, "Lateral", "Quiteño", "Barcelona", 25);
-Database.Jugadores.Add(objJug1);
-Database.Jugadores.Add(objJug2);
-Database.Jugadores.Add(objJug3);
 do
 {
     Console.Clear();
@@ -62,8 +56,8 @@ do
     Console.WriteLine("11.- Crear Partidos");// deber / ya esta
     Console.WriteLine("12.- Listar Partidos");// deber / ya esta
     Console.WriteLine("13.- Buscar Partido");// deber /ya esta
-    Console.WriteLine("14.- Actualizar Partido");// deber
-    Console.WriteLine("15.- Eliminar Partido");// deber
+    Console.WriteLine("14.- Actualizar Partido");// deber /Ya esta
+    Console.WriteLine("15.- Eliminar Partido");// deber  /Ya esta
     Console.WriteLine("16.- Salir");
     Console.WriteLine("");
     Console.Write("Ingrese una opción: ");
@@ -193,6 +187,7 @@ void ActualizarJugador()
 
         Console.WriteLine("Ingrese la nueva cantidad de goles del jugador: ");
         objJugador.Goles = Convert.ToInt32(Console.ReadLine());
+        Database.GuardarJugadores();
 
         Console.WriteLine("Jugador actualizado exitosamente!!");
     }
@@ -218,6 +213,7 @@ void EliminarJugador()
         if(Console.ReadLine().ToUpper()=="S")
         {
             Database.Jugadores.Remove(objJugador);
+            Database.GuardarJugadores();
             Console.WriteLine("Jugador eliminado exitosamente!!");
         }
         else
@@ -552,6 +548,7 @@ void crearJugador()
 
     Jugador objJugador = new Jugador(nombre, edad, numero, posicion, nacionalidad, equipo, goles);
     Database.Jugadores.Add(objJugador);
+    Database.GuardarJugadores();
     Console.WriteLine("Jugador creado exitosamente.");
     Console.ReadLine();
 }

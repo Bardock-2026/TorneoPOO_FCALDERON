@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TorneoPOO_FCALDERON.Generales;
 
 namespace TorneoPOO_EMANOSALVAS.Models
 {
@@ -74,7 +75,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
                 arbitro = value;
             }
         }
-
+      
 
         //Contructor
         public Partido(int id, Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
@@ -83,7 +84,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
             {
                 throw new Exception("El equipo local y visitante no pueden tener el mismo nombre");
             }
-            this.Id = id;
+           
             this.Local = local;
             this.Visitante = visitante;
             this.Fecha = fecha;
@@ -91,6 +92,14 @@ namespace TorneoPOO_EMANOSALVAS.Models
             this.golesLocal = golesLocal;
             this.golesVisitante = golesVisitante;
             this.arbitro = arbitro;
+            if (Database.Partidos.Count == 0)
+            {
+                this.id = 1;
+            }
+            else
+            {
+                this.id = Database.Partidos.Max(x => x.id) + 1;
+            }
         }
         
         public void MostrarResumen()
@@ -106,13 +115,13 @@ namespace TorneoPOO_EMANOSALVAS.Models
         // AÑADIR IMPRIMIR PARTIDO
         public void Imprimir()
         {
-            Console.WriteLine($"ID del partido: {Id}");
-            Console.WriteLine($"Equipo Local: {Local.Nombre}");
-            Console.WriteLine($"Equipo Visitante: {Visitante.Nombre}");
-            Console.WriteLine($"Fecha: {Fecha.ToShortDateString()}");
-            Console.WriteLine($"Lugar: {Lugar}");
-            Console.WriteLine($"Árbitro: {Arbitro}");
-            Console.WriteLine($"Resultado: {GolesLocal} - {GolesVisitante}");
+            Console.WriteLine($"ID del partido: {this.Id}");
+            Console.WriteLine($"Equipo Local: {this.Local.Nombre}");
+            Console.WriteLine($"Equipo Visitante: {this.Visitante.Nombre}");
+            Console.WriteLine($"Fecha: {this.Fecha.ToShortDateString()}");
+            Console.WriteLine($"Lugar: {this.Lugar}");
+            Console.WriteLine($"Árbitro: {this.Arbitro}");
+            Console.WriteLine($"Resultado: {this.GolesLocal} - {this.GolesVisitante}");
             Console.WriteLine("------------------------------------");
         }
     }

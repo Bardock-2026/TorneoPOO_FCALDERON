@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using TorneoPOO_FCALDERON.Generales;
 
 namespace TorneoPOO_FCALDERON.Models
 {
@@ -18,6 +19,7 @@ namespace TorneoPOO_FCALDERON.Models
         private int goles;
         private string fichado;
         private Equipo equipo_actual;
+        private int id; // Principal
 
         //Propiedades 
 
@@ -66,7 +68,10 @@ namespace TorneoPOO_FCALDERON.Models
                 goles = value;
             }
         }
+
+
         public string Fichado { get => fichado; }
+        public int Id { get => id; set => id = value; }
 
         //Constructor
         public Jugador(String nombre, int edad, int numero, string posicion, string nacionalidad, string equipo, int goles)
@@ -79,7 +84,7 @@ namespace TorneoPOO_FCALDERON.Models
             {
                 throw new Exception("El número de la camiseta no es válido");
             }
-
+           
             this.Nombre = nombre;
             this.Edad = edad;
             this.Numero = numero;
@@ -88,7 +93,16 @@ namespace TorneoPOO_FCALDERON.Models
             this.equipo = equipo;
             this.goles = goles;
             this.fichado = "N";
-            equipo_actual = null;
+            this.equipo_actual = null;
+            if (Database.Jugadores.Count == 0)
+            {
+                this.id = 1;
+            }
+            else
+            {
+                this.id = Database.Jugadores.Max(x => x.id) + 1;
+            }
+     
         }
         //METODOS, COMPORTAMIENTO O FUNCIONES 
 
@@ -133,6 +147,7 @@ namespace TorneoPOO_FCALDERON.Models
         }
         public void Imprimir()
         {
+            Console.WriteLine($"ID: {this.id}");
             Console.WriteLine($"Nombre: {this.nombre}");
             Console.WriteLine($"Edad: {this.edad}");
             Console.WriteLine($"Numero {this.numero}");
