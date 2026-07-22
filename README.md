@@ -33,3 +33,9 @@ Se agrego crud en equipo, aun falta eliminar equipo, queda como deber
 Se comieza a modificar clase partido con funcion imprimir
 Se actualiza funcion eliminar equipo 
 Se realiza CRUD de la clase Partido
+
+2026/21/07
+Se agrego clase ArchivoJson para poder guardar en memoria
+se modifico la clase database con las funciones cargar datos, guardardatos, guardar jugadores, guardar equipos, guardar partidos
+se agrego caracteristica id a jugardo equipo y partido
+se modifico program con database.cargardatos para poder guardar en memoria local
