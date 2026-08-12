@@ -20,7 +20,32 @@ namespace TorneoPOO_FCALDERON.Datos
             //CADENA CONEXION USUARIO WINDOWS
             //optionsBuilder.UseSqlServer("Server=DESKTOP-DQDC13N\SQLEXPRESS;Database=TORNEO_FCALDERON;Trusted_Connection=True;");
 
+        }
+        //3er paso Configurar las relaciones entre las tablas
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //Relacion 1 a muchos entre Equipo y Jugador
+            modelBuilder.Entity<Models.Equipo>()
+                .HasMany(e => e.Jugadores)
+                .WithOne()
+                .HasForeignKey(j => j.EquipoId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            //Relacion 1 a muchos entre Partido y Equipo (local y visitante)
+            modelBuilder.Entity<Models.Partido>()
+                .HasOne(p => p.Local)
+                .WithMany()
+                .HasForeignKey(p => p.LocalId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Models.Partido>()
+                .HasOne(p => p.Visitante)
+                .WithMany()
+                .HasForeignKey(p => p.VisitanteId)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
         }
+
     }
 }
