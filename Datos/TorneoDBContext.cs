@@ -16,7 +16,7 @@ namespace TorneoPOO_FCALDERON.Datos
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //CADENA CONEXION USUARIO SQL SERVER
-            optionsBuilder.UseSqlServer("Server=DESKTOP-DQDC13N\SQLEXPRESS;Database=TORNEO_FCALDERON;User Id=sa;Password=1234;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-DQDC13N\\SQLEXPRESS;Database=TORNEO_FCALDERON;User Id=sa;Password=1234;TrustServerCertificate=True;");
             //CADENA CONEXION USUARIO WINDOWS
             //optionsBuilder.UseSqlServer("Server=DESKTOP-DQDC13N\SQLEXPRESS;Database=TORNEO_FCALDERON;Trusted_Connection=True;");
 
