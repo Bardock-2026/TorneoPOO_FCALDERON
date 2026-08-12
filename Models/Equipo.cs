@@ -1,7 +1,15 @@
-﻿using TorneoPOO_FCALDERON.Generales;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
 
-public class Equipo
+namespace TorneoPOO_FCALDERON.Models
+{
+    public class Equipo
 {
     private string nombre;
     private string ciudad;
@@ -136,4 +144,5 @@ public class Equipo
             Console.WriteLine("Este equipo aún no tiene jugadores fichados.");
         }
     }
+ }
 }

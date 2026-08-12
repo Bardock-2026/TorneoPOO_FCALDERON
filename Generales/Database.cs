@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TorneoPOO_EMANOSALVAS.Models;
+using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
 
 namespace TorneoPOO_FCALDERON.Generales

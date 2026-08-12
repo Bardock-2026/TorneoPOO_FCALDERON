@@ -33,7 +33,7 @@
 //objPartido1.MostrarResumen();
 
 using System.Linq.Expressions;
-using TorneoPOO_EMANOSALVAS.Models;
+using TorneoPOO_FCALDERON.Models;
 using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
 Database.CargarDatos();  // ESTO ES IMPORTANTE!!! 

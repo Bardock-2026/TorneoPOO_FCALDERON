@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TorneoPOO_FCALDERON.Generales;
 
-namespace TorneoPOO_EMANOSALVAS.Models
+namespace TorneoPOO_FCALDERON.Models
 {
     public class Partido
     {
