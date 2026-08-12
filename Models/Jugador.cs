@@ -73,9 +73,8 @@ namespace TorneoPOO_FCALDERON.Models
 
         public string Fichado { get => fichado; }
         public int Id { get => id; set => id = value; }
-        public int EquipoId { get => equipoId ?? 0; set => equipoId = value; }
+        public int? EquipoId { get => equipoId; set => equipoId = value; }
         public Equipo? EquipoActual { get => equipo_actual; set => equipo_actual = value; }
-
         //Constructor
         public Jugador(String nombre, int edad, int numero, string posicion, string nacionalidad, string equipo, int goles)
         {
@@ -96,8 +95,9 @@ namespace TorneoPOO_FCALDERON.Models
             this.equipo = equipo;
             this.goles = goles;
             this.fichado = "N";
-            this.equipo_actual = null;
-                 
+            this.EquipoActual = null;
+            this.EquipoId = null;
+
         }
 
         public Jugador() 

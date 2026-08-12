@@ -100,7 +100,12 @@ namespace TorneoPOO_FCALDERON.Models
             this.arbitro = arbitro;
            
         }
-        
+        public Partido() 
+        {
+
+
+        }
+
         public void MostrarResumen()
         {
             Console.WriteLine($"Hay un partido programado entre el local {this.Local.Nombre} y el visitante {this.Visitante.Nombre} en el lugar {this.Lugar}");

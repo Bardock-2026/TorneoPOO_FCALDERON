@@ -33,10 +33,11 @@
 //objPartido1.MostrarResumen();
 
 using System.Linq.Expressions;
-using TorneoPOO_FCALDERON.Models;
+using TorneoPOO_FCALDERON.Datos;
 using TorneoPOO_FCALDERON.Generales;
 using TorneoPOO_FCALDERON.Models;
-Database.CargarDatos();  // ESTO ES IMPORTANTE!!! 
+
+
 int opcion = 0;
 do
 {
@@ -125,7 +126,8 @@ void listarJugadores()
 {
     Console.Clear();
     Console.WriteLine("**********Jugadores Creados**********");
-    foreach (Jugador jugador in Database.Jugadores)
+    var contex = new TorneoDBContext();
+    foreach (Jugador jugador in contex.Jugadores)
     {
         jugador.Imprimir();
         Console.WriteLine("_____________________________________");
@@ -138,8 +140,9 @@ void BuscarJugador()
      Console.WriteLine("**********Buscar Jugador**********");
      Console.WriteLine("Ingrese el nombre del jugador a buscar: ");
      string nombreIngresado = Console.ReadLine();
-     Jugador objJugador = Database.Jugadores.Find(j => j.Nombre == nombreIngresado);
-     if (objJugador != null)
+    var contex = new TorneoDBContext();
+    Jugador objJugador = contex.Jugadores.Where(j => j.Nombre == nombreIngresado).FirstOrDefault();
+    if (objJugador != null)
      {
         Console.WriteLine("Jugador Encontrado!!");
         Console.WriteLine("_____________________________________");
@@ -158,7 +161,9 @@ void ActualizarJugador()
     Console.WriteLine("**********Actualizar Jugador**********");
     Console.WriteLine("Ingrese el nombre del jugador a buscar: ");
     string nombreIngresado = Console.ReadLine();
-    Jugador objJugador = Database.Jugadores.Find(j => j.Nombre == nombreIngresado);
+    var contex = new TorneoDBContext();
+    Jugador objJugador = contex.Jugadores.Where(j => j.Nombre == nombreIngresado).FirstOrDefault();
+    
 
     if (objJugador != null)
     {
@@ -187,7 +192,7 @@ void ActualizarJugador()
 
         Console.WriteLine("Ingrese la nueva cantidad de goles del jugador: ");
         objJugador.Goles = Convert.ToInt32(Console.ReadLine());
-        Database.GuardarJugadores();
+        contex.SaveChanges();
 
         Console.WriteLine("Jugador actualizado exitosamente!!");
     }
@@ -203,7 +208,9 @@ void EliminarJugador()
     Console.WriteLine("**********Eliminar Jugador**********");
     Console.WriteLine("Ingrese el nombre del jugador a eliminar: ");
     string nombreIngresado = Console.ReadLine();
-    Jugador objJugador = Database.Jugadores.Find(j => j.Nombre == nombreIngresado);
+    var contex = new TorneoDBContext();
+    Jugador objJugador = contex.Jugadores.Where(j => j.Nombre == nombreIngresado).FirstOrDefault();
+    
     if (objJugador != null)
     {
         Console.WriteLine("_____________________________________");
@@ -212,8 +219,8 @@ void EliminarJugador()
         Console.WriteLine($"Estas seguro que quieres eliminar a este jugador{objJugador.Nombre}??  S/N:");
         if(Console.ReadLine().ToUpper()=="S")
         {
-            Database.Jugadores.Remove(objJugador);
-            Database.GuardarJugadores();
+            contex.Jugadores.Remove(objJugador);
+            contex.SaveChanges();
             Console.WriteLine("Jugador eliminado exitosamente!!");
         }
         else
@@ -547,8 +554,16 @@ void crearJugador()
     int goles = Convert.ToInt32(Console.ReadLine());
 
     Jugador objJugador = new Jugador(nombre, edad, numero, posicion, nacionalidad, equipo, goles);
-    Database.Jugadores.Add(objJugador);
-    Database.GuardarJugadores();
+
+    using (var context = new TorneoDBContext())
+    {
+        context.Jugadores.Add(objJugador);
+        context.SaveChanges();
+    }
+
+    //Anula Database para usar sql
+    //Database.Jugadores.Add(objJugador);
+    //Database.GuardarJugadores();
     Console.WriteLine("Jugador creado exitosamente.");
     Console.ReadLine();
 }
