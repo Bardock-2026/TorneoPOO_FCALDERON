@@ -75,16 +75,13 @@ public class Equipo
         this.entrenador = entrenador;
         this.titulos = titulos;
         this.estadio = estadio;
-        if (Database.Equipos.Count == 0)
-        {
-            this.id = 1;
-        }
-        else
-        {
-            this.id = Database.Equipos.Max(x => x.id) + 1;
-        }
+        
     }
+    public Equipo()
+    {
 
+
+    }
 
 
     //Acciones: Agregar jugador, listar plantilla.

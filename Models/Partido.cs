@@ -17,6 +17,9 @@ namespace TorneoPOO_EMANOSALVAS.Models
         private int golesLocal;
         private int golesVisitante;
         private string arbitro;
+
+        private int? localId { get; set; }
+        private int? visitanteId { get; set; }
         public int Id
         {
             get => id;
@@ -34,6 +37,9 @@ namespace TorneoPOO_EMANOSALVAS.Models
         public Equipo Visitante { get => visitante; set => visitante = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public string Lugar { get => lugar; set => lugar = value; }
+
+        public int? LocalId { get => localId; set => localId = value; }
+        public int? VisitanteId { get => visitanteId; set => visitanteId = value; }
         public int GolesLocal
         {
             get => golesLocal;
@@ -92,14 +98,7 @@ namespace TorneoPOO_EMANOSALVAS.Models
             this.golesLocal = golesLocal;
             this.golesVisitante = golesVisitante;
             this.arbitro = arbitro;
-            if (Database.Partidos.Count == 0)
-            {
-                this.id = 1;
-            }
-            else
-            {
-                this.id = Database.Partidos.Max(x => x.id) + 1;
-            }
+           
         }
         
         public void MostrarResumen()
