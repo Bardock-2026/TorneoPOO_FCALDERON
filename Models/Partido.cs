@@ -7,108 +7,84 @@ using TorneoPOO_FCALDERON.Generales;
 
 namespace TorneoPOO_FCALDERON.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Partido
     {
-        private int id; // Identificador UNICO OJOOOOOO
-        private Equipo local;
-        private Equipo visitante;
+        // PROPIEDADES PRINCIPALES
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // ID autoincremental
+        public int Id { get; set; }
+
         private DateTime fecha;
         private string lugar;
+        private string arbitro;
         private int golesLocal;
         private int golesVisitante;
-        private string arbitro;
 
-        private int? localId { get; set; }
-        private int? visitanteId { get; set; }
-        public int Id
-        {
-            get => id;
-            set
-            {
-                if (value <= 0)
-                {
-                    Console.WriteLine("El ID del partido debe ser mayor a 0.");
-                    return;
-                }
-                id = value;
-            }
-        }
-        public Equipo Local { get => local; set => local = value; }
-        public Equipo Visitante { get => visitante; set => visitante = value; }
         public DateTime Fecha { get => fecha; set => fecha = value; }
         public string Lugar { get => lugar; set => lugar = value; }
-
-        public int? LocalId { get => localId; set => localId = value; }
-        public int? VisitanteId { get => visitanteId; set => visitanteId = value; }
+        public string Arbitro
+        {
+            get => arbitro;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new Exception("El nombre del árbitro no puede estar vacío.");
+                arbitro = value;
+            }
+        }
         public int GolesLocal
         {
             get => golesLocal;
             set
             {
                 if (value < 0)
-                {
-                    Console.WriteLine("Los goles del equipo local no pueden ser negativos.");
-                    return;
-                }
+                    throw new Exception("Los goles del equipo local no pueden ser negativos.");
                 golesLocal = value;
             }
         }
-
         public int GolesVisitante
         {
             get => golesVisitante;
             set
             {
                 if (value < 0)
-                {
-                    Console.WriteLine("Los goles del equipo visitante no pueden ser negativos.");
-                    return;
-                }
+                    throw new Exception("Los goles del equipo visitante no pueden ser negativos.");
                 golesVisitante = value;
             }
         }
 
-        public string Arbitro
-        {
-            get => arbitro;
-            set
-            {
-                if (value == null || value == "")
-                {
-                    Console.WriteLine("El nombre del árbitro no puede estar vacío.");
-                    return;
-                }
-                arbitro = value;
-            }
-        }
-      
+        // RELACIONES CON EQUIPO
+        public int? LocalId { get; set; }
+        public Equipo? Local { get; set; }
 
-        //Contructor
-        public Partido(int id, Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
+        public int? VisitanteId { get; set; }
+        public Equipo? Visitante { get; set; }
+
+        // CONSTRUCTORES
+        public Partido(Equipo local, Equipo visitante, DateTime fecha, string lugar, int golesLocal, int golesVisitante, string arbitro)
         {
             if (local.Nombre == visitante.Nombre)
-            {
                 throw new Exception("El equipo local y visitante no pueden tener el mismo nombre");
-            }
-           
+
             this.Local = local;
             this.Visitante = visitante;
             this.Fecha = fecha;
             this.Lugar = lugar;
-            this.golesLocal = golesLocal;
-            this.golesVisitante = golesVisitante;
-            this.arbitro = arbitro;
-           
-        }
-        public Partido() 
-        {
-
-
+            this.GolesLocal = golesLocal;
+            this.GolesVisitante = golesVisitante;
+            this.Arbitro = arbitro;
         }
 
+        // Constructor vacío requerido por EF
+        public Partido() { }
+
+        // MÉTODOS
         public void MostrarResumen()
         {
-            Console.WriteLine($"Hay un partido programado entre el local {this.Local.Nombre} y el visitante {this.Visitante.Nombre} en el lugar {this.Lugar}");
+            Console.WriteLine($"Hay un partido programado entre el local {this.Local?.Nombre ?? "Sin equipo"} y el visitante {this.Visitante?.Nombre ?? "Sin equipo"} en el lugar {this.Lugar}");
         }
 
         public bool ValidarEquiposDistintos()
@@ -116,12 +92,11 @@ namespace TorneoPOO_FCALDERON.Models
             return this.Local != this.Visitante;
         }
 
-        // AÑADIR IMPRIMIR PARTIDO
         public void Imprimir()
         {
             Console.WriteLine($"ID del partido: {this.Id}");
-            Console.WriteLine($"Equipo Local: {this.Local.Nombre}");
-            Console.WriteLine($"Equipo Visitante: {this.Visitante.Nombre}");
+            Console.WriteLine($"Equipo Local: {(this.Local != null ? this.Local.Nombre : "Sin equipo")}");
+            Console.WriteLine($"Equipo Visitante: {(this.Visitante != null ? this.Visitante.Nombre : "Sin equipo")}");
             Console.WriteLine($"Fecha: {this.Fecha.ToShortDateString()}");
             Console.WriteLine($"Lugar: {this.Lugar}");
             Console.WriteLine($"Árbitro: {this.Arbitro}");

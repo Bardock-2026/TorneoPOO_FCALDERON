@@ -10,139 +10,120 @@ using TorneoPOO_FCALDERON.Models;
 namespace TorneoPOO_FCALDERON.Models
 {
     public class Equipo
-{
-    private string nombre;
-    private string ciudad;
-    private List<Jugador> jugadores;
-    private string entrenador;
-    private int titulos;
-    private string estadio;
-    private int id;// Principal
-    public string Nombre { get => nombre; set => nombre = value; }
-    public string Ciudad { get => ciudad; set => ciudad = value; }
-    public List<Jugador> Jugadores { get => jugadores; set => jugadores = value; }
-    public string Entrenador
     {
-        get => entrenador;
-        set
+        // ATRIBUTOS
+        private int id; // PK principal
+        private string nombre;
+        private string ciudad;
+        private string entrenador;
+        private int titulos;
+        private string estadio;
+
+        // PROPIEDADES
+        public int Id { get => id; set => id = value; }
+        public string Nombre { get => nombre; set => nombre = value; }
+        public string Ciudad { get => ciudad; set => ciudad = value; }
+        public string Entrenador
         {
-            if (value == null || value == "")
+            get => entrenador;
+            set
             {
-                Console.WriteLine("El nombre del entrenador no puede estar vacío.");
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new Exception("El nombre del entrenador no puede estar vacío.");
+                }
+                entrenador = value;
+            }
+        }
+        public int Titulos
+        {
+            get => titulos;
+            set
+            {
+                if (value < 0)
+                {
+                    throw new Exception("La cantidad de títulos no puede ser negativa.");
+                }
+                titulos = value;
+            }
+        }
+        public string Estadio
+        {
+            get => estadio;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    throw new Exception("El nombre del estadio no puede estar vacío.");
+                }
+                estadio = value;
+            }
+        }
+
+        // Relación con Jugadores (1 Equipo → muchos Jugadores)
+        public List<Jugador> Jugadores { get; set; } = new List<Jugador>();
+
+        // CONSTRUCTORES
+        public Equipo(string nombre, string ciudad, string entrenador, int titulos, string estadio)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                throw new Exception("El nombre del equipo no puede estar vacío");
+            }
+            if (string.IsNullOrWhiteSpace(ciudad))
+            {
+                throw new Exception("La ciudad del equipo no puede estar vacía");
+            }
+
+            this.Nombre = nombre;
+            this.Ciudad = ciudad;
+            this.Entrenador = entrenador;
+            this.Titulos = titulos;
+            this.Estadio = estadio;
+            this.Jugadores = new List<Jugador>();
+        }
+
+        // Constructor vacío requerido por EF
+        public Equipo() { }
+
+        // MÉTODOS
+        public void AgregarJugador(Jugador objJugador)
+        {
+            if (objJugador == null)
+            {
+                Console.WriteLine("No se puede agregar un jugador nulo.");
                 return;
             }
-            entrenador = value;
+            this.Jugadores.Add(objJugador);
+            Console.WriteLine($"Jugador {objJugador.Nombre} agregado correctamente!!");
         }
-    }
 
-    public int Titulos
-    {
-        get => titulos;
-        set
+        public void ListarPlantilla()
         {
-            if (value < 0)
+            Console.WriteLine($"Plantilla del equipo {this.Nombre} de la ciudad de {this.Ciudad}:");
+            if (Jugadores.Count > 0)
             {
-                Console.WriteLine("La cantidad de títulos no puede ser negativa.");
-                return;
+                foreach (Jugador objJugador in Jugadores)
+                {
+                    objJugador.Imprimir();
+                    Console.WriteLine("------------------------------------");
+                }
             }
-            titulos = value;
-        }
-    }
-
-    public string Estadio
-    {
-        get => estadio;
-        set
-        {
-            if (value == null || value == "")
+            else
             {
-                Console.WriteLine("El nombre del estadio no puede estar vacío.");
-                return;
-            }
-            estadio = value;
-        }
-    }
-    public int Id { get => id; set => id = value; }
-
-    //Constructor
-    public Equipo(string nombre, string ciudad, string entrenador, int titulos, string estadio)
-    {
-        if (nombre == null || nombre.Length == 0)
-        {
-            throw new Exception("El nombre del equipo no puede estar vacío");
-        }
-
-        if (ciudad == null || ciudad.Length == 0)
-        {
-            throw new Exception("La ciudad del equipo no puede estar vacía");
-        }
-
-        this.Nombre = nombre;
-        this.Ciudad = ciudad;
-        this.Jugadores = new List<Jugador>();
-        this.entrenador = entrenador;
-        this.titulos = titulos;
-        this.estadio = estadio;
-        
-    }
-    public Equipo()
-    {
-
-
-    }
-
-
-    //Acciones: Agregar jugador, listar plantilla.
-
-    public void AgregarJugador(Jugador objJugador)
-    {
-        this.Jugadores.Add(objJugador);
-        Console.WriteLine($"Jugador {objJugador.Nombre} agregado correctamente!!");
-    }
-
-    public void ListarPlantilla()
-    {
-        Console.WriteLine($"La lista de jugadores del equipo {this.Nombre} de la ciudad de {this.Ciudad} es: ");
-        foreach(Jugador objJugador in Jugadores)
-        {
-            objJugador.Imprimir();
-            Console.WriteLine("________________________________");
-
-        }
-    }
-    public bool ImpedirAgregarJugadorNulo(Jugador jugador)
-    {
-        if (jugador == null)
-        {
-            return false;
-        }
-        this.Jugadores.Add(jugador);
-        return true;
-    }
-
-    public void Imprimir()
-    {
-        Console.WriteLine($"ID: {this.id}");
-        Console.WriteLine($"Nombre del equipo: {this.Nombre}");
-        Console.WriteLine($"Ciudad del equipo: {this.Ciudad}");
-        Console.WriteLine($"Entrenador: {this.Entrenador}");
-        Console.WriteLine($"Títulos: {this.Titulos}");
-        Console.WriteLine($"Estadio: {this.Estadio}");
-        Console.WriteLine("------------------------------------");
-
-        if (Jugadores.Count > 0)
-        {
-            Console.WriteLine($"La lista de jugadores del equipo {Nombre} de la ciudad de {Ciudad} es: ");
-            foreach (Jugador objJugador in Jugadores)
-            {
-                objJugador.Imprimir();
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine("Este equipo aún no tiene jugadores fichados.");
             }
         }
-        else
+
+        public void Imprimir()
         {
-            Console.WriteLine("Este equipo aún no tiene jugadores fichados.");
+            Console.WriteLine($"ID: {this.Id}");
+            Console.WriteLine($"Nombre del equipo: {this.Nombre}");
+            Console.WriteLine($"Ciudad del equipo: {this.Ciudad}");
+            Console.WriteLine($"Entrenador: {this.Entrenador}");
+            Console.WriteLine($"Títulos: {this.Titulos}");
+            Console.WriteLine($"Estadio: {this.Estadio}");
+            Console.WriteLine("------------------------------------");
         }
     }
- }
 }
