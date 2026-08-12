@@ -39,3 +39,7 @@ Se agrego clase ArchivoJson para poder guardar en memoria
 se modifico la clase database con las funciones cargar datos, guardardatos, guardar jugadores, guardar equipos, guardar partidos
 se agrego caracteristica id a jugardo equipo y partido
 se modifico program con database.cargardatos para poder guardar en memoria local
+
+11/08/2026
+Se anexo la base de datos sql para usarlo como memria en vez de database 
+se modifico clase jugador para que pueda modificarse desde sql
